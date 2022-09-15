@@ -2,7 +2,9 @@ server:
     port: ${PORT:${SERVER_PORT:0}}
     
 spring:
-  data:
+    zipkin:
+        base-url: http://localhost:9411
+    data:
       mongodb:
         authentication-database: admin
         host: localhost
@@ -10,10 +12,17 @@ spring:
         username: mongoadmin
         password: secret
         database: mydatabase
-      zipkin:
-          base-url: http://localhost:9411
       rabbitmq:
           addresses: localhost:5672
+    kafka:
+        streams:
+            bootstrap-servers: localhost:29092
+        consumer:
+            group-id: microservicesdemo
+            template:
+              default-topic: topic1
+    rabbitmq:
+        addresses: localhost:5672
     
 eureka:
     instance:
@@ -25,3 +34,13 @@ eureka:
             defaultZone: http://localhost:8761/eureka
         enabled: true
            
+rabbitmq:
+    exchanges:
+        direct: direct.exchange
+        dead: dead.exchange
+    queues:
+        file: file.queue
+        dead: dead.queue
+    routing-keys:
+        file: file.routing-key
+        dead: dead.routing-key
