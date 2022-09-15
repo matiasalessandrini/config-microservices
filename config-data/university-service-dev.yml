@@ -10,7 +10,7 @@ spring:
     cache:
       type: redis
     datasource:
-        url: jdbc:mysql://mysql-db2:3308/mydatabase
+        url: jdbc:mysql://mysqldb2:3308/mydatabase
         username: root
         password: secret
         driver-class-name: com.mysql.cj.jdbc.Driver
