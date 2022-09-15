@@ -25,8 +25,7 @@ spring:
         base-url: http://zipkin:9411
     kafka:
         streams:
-            bootstrap-servers:
-            -  kafka:29092
+            bootstrap-servers: kafka-server:29092
         consumer:
             group-id: microservicesdemo
             template:
