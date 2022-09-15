@@ -5,12 +5,12 @@ spring:
     application:
         name: university-service 
     redis:
-      host: redis
+      host: redis-server
       port: 6379
     cache:
       type: redis
     datasource:
-        url: jdbc:mysql://mysqldb:3306/mydatabase
+        url: jdbc:mysql://mysqldb:3308/mydatabase
         username: root
         password: secret
         driver-class-name: com.mysql.cj.jdbc.Driver
