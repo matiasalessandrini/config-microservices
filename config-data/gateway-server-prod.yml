@@ -1,0 +1,36 @@
+server:
+    port: 8080
+
+spring:
+  application:
+    name: gatewayserver-service
+  zipkin:
+      base-url: http://zipkin-service:9411
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      routes:
+        - id: file-service
+          uri: lb://file-service
+          predicates:
+            - Path=/file-service/**
+            
+        - id: university-service
+          uri: lb://university-service
+          predicates:
+            - Path=/university-service/**
+            
+        - id: user-service
+          uri: lb://user-service
+          predicates:
+            - Path=/user-service/**
+
+eureka:
+    client:
+        service-url:
+             defaultZone: http://eurekaserver-service:8761/eureka
+        fetch-registry: true
+        register-with-eureka: true
+        enabled: true

@@ -1,0 +1,30 @@
+server:
+    port: ${PORT:${SERVER_PORT:8081}}
+
+spring:
+    application:
+        name: user-service 
+    datasource:
+        url: jdbc:mysql://mysqldb2-service:3307/mydatabase
+        username: root
+        password: secret
+        driver-class-name: com.mysql.cj.jdbc.Driver
+    jpa:
+        hibernate:
+            ddl-auto: create
+        properties:
+            hibernate:
+                dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+        show-sql: true
+    zipkin:
+        base-url: http://zipkin-service:9411
+
+eureka:
+    instance:
+        instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+    client:
+        fetch-registry: true
+        register-with-eureka: true
+        service-url:
+             defaultZone: http://eurekaserver-service:8761/eureka
+        enabled: true
